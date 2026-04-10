@@ -10,34 +10,34 @@ export default function Home() {
       <NavBar />
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative min-h-[870px] flex items-center px-8 lg:px-24 overflow-hidden bg-surface">
-          <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center w-full">
-            <div className="z-10">
-              <span className="inline-block px-4 py-1.5 mb-6 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-xs font-bold tracking-widest uppercase font-label">The Future of Education</span>
-              <h1 className="font-headline text-5xl lg:text-7xl font-extrabold tracking-tighter text-on-surface leading-[1.1] mb-8">
-                Learn the most in-demand <span className="text-primary">skills in tech</span>
+        <section className="relative min-h-[870px] flex items-center px-4 md:px-8 lg:px-24 overflow-hidden bg-surface">
+          <div className="max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center w-full mt-12 md:mt-0">
+            <div className="z-10 text-center lg:text-left">
+              <span className="inline-block px-4 py-1.5 mb-6 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-[10px] md:text-xs font-bold tracking-widest uppercase font-label">The Future of Education</span>
+              <h1 className="font-headline text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tighter text-on-surface leading-[1.1] mb-6 md:mb-8">
+                Learn the most in-demand <span className="text-primary block lg:inline">skills in tech</span>
               </h1>
-              <p className="text-lg text-on-surface-variant max-w-lg mb-10 leading-relaxed">
+              <p className="text-base md:text-lg text-on-surface-variant max-w-lg mx-auto lg:mx-0 mb-8 md:mb-10 leading-relaxed">
                 Accelerate your career with curated learning paths designed by industry experts. Join 50,000+ students mastering AI, Design, and Engineering.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/courses" className="signature-gradient px-8 py-4 rounded-full text-white font-bold text-lg shadow-lg shadow-blue-500/20 active:scale-95 transition-all">Enroll Now</Link>
-                <Link href="/courses" className="px-8 py-4 rounded-full border border-outline-variant/30 text-primary font-bold text-lg hover:bg-surface-container-low transition-all">Browse Courses</Link>
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center lg:justify-start">
+                <Link href="/courses" className="signature-gradient px-8 py-4 rounded-full text-white font-bold text-base md:text-lg shadow-lg shadow-blue-500/20 active:scale-95 transition-all w-full sm:w-auto">Enroll Now</Link>
+                <Link href="/courses" className="px-8 py-4 rounded-full border border-outline-variant/30 text-primary font-bold text-base md:text-lg hover:bg-surface-container-low transition-all w-full sm:w-auto">Browse Courses</Link>
               </div>
             </div>
-            <div className="relative hidden lg:block">
-              <div className="absolute -top-20 -right-20 w-96 h-96 bg-primary-fixed/40 rounded-full blur-[100px]"></div>
+            <div className="relative w-full max-w-md mx-auto lg:max-w-none mt-8 lg:mt-0">
+              <div className="absolute -top-10 -right-10 md:-top-20 md:-right-20 w-64 h-64 md:w-96 md:h-96 bg-primary-fixed/40 rounded-full blur-[60px] md:blur-[100px]"></div>
               <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/5]">
                 <Image src="https://picsum.photos/seed/student/800/1000" alt="Student learning" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" referrerPolicy="no-referrer" />
               </div>
-              <div className="absolute -bottom-8 -left-8 bg-surface-container-lowest p-6 rounded-2xl shadow-xl border border-outline-variant/10">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                    <TrendingUp className="w-6 h-6" />
+              <div className="absolute -bottom-6 -left-4 md:-bottom-8 md:-left-8 bg-surface-container-lowest p-4 md:p-6 rounded-2xl shadow-xl border border-outline-variant/10">
+                <div className="flex items-center gap-3 md:gap-4">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                    <TrendingUp className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
-                  <div>
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Active Learners</p>
-                    <p className="text-xl font-extrabold">12.4k+</p>
+                  <div className="text-left">
+                    <p className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">Active Learners</p>
+                    <p className="text-lg md:text-xl font-extrabold">12.4k+</p>
                   </div>
                 </div>
               </div>
@@ -46,11 +46,11 @@ export default function Home() {
         </section>
 
         {/* Categories Section */}
-        <section className="py-24 bg-surface-container-low px-8">
+        <section className="py-16 md:py-24 bg-surface-container-low px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="mb-16 text-center max-w-2xl mx-auto">
-              <h2 className="font-headline text-3xl font-extrabold tracking-tight mb-4">Master Your Craft</h2>
-              <p className="text-on-surface-variant">Choose from specialized tracks built to take you from beginner to professional.</p>
+            <div className="mb-12 md:mb-16 text-center max-w-2xl mx-auto">
+              <h2 className="font-headline text-3xl md:text-3xl font-extrabold tracking-tight mb-4">Master Your Craft</h2>
+              <p className="text-sm md:text-base text-on-surface-variant">Choose from specialized tracks built to take you from beginner to professional.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Programming */}
@@ -102,15 +102,15 @@ export default function Home() {
         </section>
 
         {/* Featured Courses Section */}
-        <section className="py-24 px-8 bg-surface">
+        <section className="py-16 md:py-24 px-4 md:px-8 bg-surface">
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 md:mb-16 gap-4 md:gap-6 text-center md:text-left">
               <div className="max-w-xl">
-                <h2 className="font-headline text-4xl font-extrabold tracking-tight mb-4">Trending Courses</h2>
-                <p className="text-on-surface-variant">Join thousands of students in our most popular learning experiences this month.</p>
+                <h2 className="font-headline text-3xl md:text-4xl font-extrabold tracking-tight mb-2 md:mb-4">Trending Courses</h2>
+                <p className="text-sm md:text-base text-on-surface-variant">Join thousands of students in our most popular learning experiences this month.</p>
               </div>
-              <Link href="/courses" className="text-primary font-bold flex items-center gap-2 pb-2 border-b-2 border-primary/10 hover:border-primary transition-all">
-                View All Courses <ArrowRight className="w-5 h-5" />
+              <Link href="/courses" className="text-primary font-bold flex items-center gap-2 pb-2 border-b-2 border-primary/10 hover:border-primary transition-all text-sm md:text-base">
+                View All Courses <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
               </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -151,11 +151,11 @@ export default function Home() {
         </section>
 
         {/* Testimonials */}
-        <section className="py-32 px-8 bg-surface-container-low">
+        <section className="py-16 md:py-32 px-4 md:px-8 bg-surface-container-low">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-20">
-              <h2 className="font-headline text-4xl font-extrabold tracking-tight mb-4">What our students are saying</h2>
-              <div className="w-24 h-1 signature-gradient mx-auto rounded-full"></div>
+            <div className="text-center mb-12 md:mb-20">
+              <h2 className="font-headline text-3xl md:text-4xl font-extrabold tracking-tight mb-4">What our students are saying</h2>
+              <div className="w-16 md:w-24 h-1 signature-gradient mx-auto rounded-full"></div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {[
@@ -182,9 +182,9 @@ export default function Home() {
         </section>
 
         {/* Blog Preview Section */}
-        <section className="py-32 px-8 bg-surface">
+        <section className="py-16 md:py-32 px-4 md:px-8 bg-surface">
           <div className="max-w-7xl mx-auto">
-            <div className="flex justify-between items-center mb-16">
+            <div className="flex flex-col md:flex-row justify-between items-center mb-12 md:mb-16 gap-4">
               <h2 className="font-headline text-3xl font-extrabold tracking-tight">From the Journal</h2>
               <Link href="/blog/1" className="px-6 py-2 rounded-full border border-outline-variant/30 text-sm font-bold hover:bg-surface-container-low transition-all">Read More</Link>
             </div>
@@ -208,18 +208,18 @@ export default function Home() {
         </section>
 
         {/* Newsletter Signup */}
-        <section className="py-24 px-8">
-          <div className="max-w-7xl mx-auto signature-gradient rounded-[3rem] p-12 md:p-24 relative overflow-hidden text-center text-white">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -ml-32 -mb-32"></div>
+        <section className="py-16 md:py-24 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto signature-gradient rounded-[2rem] md:rounded-[3rem] p-8 md:p-24 relative overflow-hidden text-center text-white">
+            <div className="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 bg-white/10 rounded-full blur-3xl -mr-24 -mt-24 md:-mr-32 md:-mt-32"></div>
+            <div className="absolute bottom-0 left-0 w-48 h-48 md:w-64 md:h-64 bg-white/10 rounded-full blur-3xl -ml-24 -mb-24 md:-ml-32 md:-mb-32"></div>
             <div className="relative z-10 max-w-2xl mx-auto">
-              <h2 className="font-headline text-4xl md:text-5xl font-extrabold tracking-tight mb-6">Stay ahead of the curve</h2>
-              <p className="text-white/80 mb-12 text-lg">Weekly insights on tech trends, career opportunities, and course updates delivered straight to your inbox.</p>
-              <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-                <input type="email" placeholder="Your work email" className="flex-grow px-8 py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/60 focus:bg-white/20 focus:outline-none transition-all outline-none" />
-                <button type="button" className="bg-white text-primary font-bold px-8 py-4 rounded-full hover:bg-blue-50 transition-all">Join Now</button>
+              <h2 className="font-headline text-3xl md:text-5xl font-extrabold tracking-tight mb-4 md:mb-6">Stay ahead of the curve</h2>
+              <p className="text-white/80 mb-8 md:mb-12 text-sm md:text-lg">Weekly insights on tech trends, career opportunities, and course updates delivered straight to your inbox.</p>
+              <form className="flex flex-col sm:flex-row gap-3 md:gap-4 max-w-lg mx-auto">
+                <input type="email" placeholder="Your work email" className="flex-grow px-6 py-3 md:px-8 md:py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/60 focus:bg-white/20 focus:outline-none transition-all outline-none text-sm md:text-base" />
+                <button type="button" className="bg-white text-primary font-bold px-6 py-3 md:px-8 md:py-4 rounded-full hover:bg-blue-50 transition-all text-sm md:text-base">Join Now</button>
               </form>
-              <p className="mt-6 text-xs text-white/50">No spam, ever. Unsubscribe at any time.</p>
+              <p className="mt-4 md:mt-6 text-[10px] md:text-xs text-white/50">No spam, ever. Unsubscribe at any time.</p>
             </div>
           </div>
         </section>
