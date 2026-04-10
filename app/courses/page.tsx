@@ -10,10 +10,10 @@ export default function CoursesPage() {
       <NavBar showSearch={true} />
       
       {/* SideNavBar (Desktop Only) */}
-      <aside className="hidden lg:flex flex-col pt-24 h-screen w-64 fixed left-0 bg-white font-body border-r-0 z-40">
+      <aside className="hidden lg:flex flex-col pt-8 h-[calc(100vh-5rem)] top-20 w-64 fixed left-0 bg-white font-body border-r border-surface-container z-40">
         <div className="px-6 mb-8 flex items-center gap-3">
           <div className="relative w-10 h-10 rounded-full overflow-hidden">
-            <Image src="https://picsum.photos/seed/alex/100/100" alt="Alex Johnson" fill className="object-cover" referrerPolicy="no-referrer" />
+            <Image src="https://picsum.photos/seed/alex/100/100" alt="Alex Johnson" fill sizes="40px" className="object-cover" referrerPolicy="no-referrer" />
           </div>
           <div>
             <p className="font-headline font-bold text-sm text-on-surface">Alex Johnson</p>
@@ -130,7 +130,7 @@ export default function CoursesPage() {
                 ].map((course, i) => (
                   <Link href={`/courses/${i + 1}`} key={i} className="group bg-surface-container-lowest rounded-xl overflow-hidden hover:bg-surface-bright transition-all duration-300 ambient-shadow block">
                     <div className="relative overflow-hidden aspect-[16/10]">
-                      <Image src={`https://picsum.photos/seed/${course.img}/600/400`} alt={course.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500 rounded-lg m-2 w-[calc(100%-1rem)]" referrerPolicy="no-referrer" />
+                      <Image src={`https://picsum.photos/seed/${course.img}/600/400`} alt={course.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                       {course.badge && (
                         <span className={`absolute top-4 left-4 ${course.badgeColor || 'bg-primary'} text-white text-[10px] font-bold px-2.5 py-1 rounded-full tracking-widest uppercase`}>
                           {course.badge}
@@ -161,6 +161,9 @@ export default function CoursesPage() {
           </div>
         </div>
       </main>
+      <div className="lg:pl-64">
+        <Footer />
+      </div>
     </>
   );
 }

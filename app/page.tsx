@@ -28,7 +28,7 @@ export default function Home() {
             <div className="relative hidden lg:block">
               <div className="absolute -top-20 -right-20 w-96 h-96 bg-primary-fixed/40 rounded-full blur-[100px]"></div>
               <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/5]">
-                <Image src="https://picsum.photos/seed/student/800/1000" alt="Student learning" fill className="object-cover" referrerPolicy="no-referrer" />
+                <Image src="https://picsum.photos/seed/student/800/1000" alt="Student learning" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" referrerPolicy="no-referrer" />
               </div>
               <div className="absolute -bottom-8 -left-8 bg-surface-container-lowest p-6 rounded-2xl shadow-xl border border-outline-variant/10">
                 <div className="flex items-center gap-4">
@@ -55,7 +55,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Programming */}
               <Link href="/courses" className="group relative md:col-span-2 overflow-hidden rounded-3xl bg-surface-container-lowest h-[400px] hover:shadow-xl transition-all duration-500 block">
-                <Image src="https://picsum.photos/seed/code/1200/800" alt="Programming" fill className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-60" referrerPolicy="no-referrer" />
+                <Image src="https://picsum.photos/seed/code/1200/800" alt="Programming" fill sizes="(max-width: 768px) 100vw, 66vw" className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-60" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 p-10 text-white">
                   <span className="px-3 py-1 bg-primary rounded-lg text-[10px] font-bold uppercase tracking-widest mb-4 inline-block">120+ Courses</span>
@@ -66,7 +66,7 @@ export default function Home() {
               </Link>
               {/* Design */}
               <Link href="/courses" className="group relative overflow-hidden rounded-3xl bg-surface-container-lowest h-[400px] hover:shadow-xl transition-all duration-500 block">
-                <Image src="https://picsum.photos/seed/design/800/800" alt="Design" fill className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-60" referrerPolicy="no-referrer" />
+                <Image src="https://picsum.photos/seed/design/800/800" alt="Design" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-60" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 p-10 text-white">
                   <span className="px-3 py-1 bg-tertiary rounded-lg text-[10px] font-bold uppercase tracking-widest mb-4 inline-block">85+ Courses</span>
@@ -76,7 +76,7 @@ export default function Home() {
               </Link>
               {/* Business */}
               <Link href="/courses" className="group relative overflow-hidden rounded-3xl bg-surface-container-lowest h-[350px] hover:shadow-xl transition-all duration-500 block">
-                <Image src="https://picsum.photos/seed/business/800/800" alt="Business" fill className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-60" referrerPolicy="no-referrer" />
+                <Image src="https://picsum.photos/seed/business/800/800" alt="Business" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-60" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 p-10 text-white">
                   <span className="px-3 py-1 bg-green-600 rounded-lg text-[10px] font-bold uppercase tracking-widest mb-4 inline-block">60+ Courses</span>
@@ -122,7 +122,7 @@ export default function Home() {
               ].map((course, i) => (
                 <Link href={`/courses/${i + 1}`} key={i} className="group bg-surface-container-lowest rounded-[2rem] overflow-hidden hover:bg-surface-bright transition-all duration-300 ambient-shadow block">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] m-3">
-                    <Image src={`https://picsum.photos/seed/${course.img}/600/400`} alt={course.title} fill className="object-cover" referrerPolicy="no-referrer" />
+                    <Image src={`https://picsum.photos/seed/${course.img}/600/400`} alt={course.title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover" referrerPolicy="no-referrer" />
                     {course.badge && (
                       <div className={`absolute top-4 left-4 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold uppercase ${course.badgeColor === 'text-primary' ? 'bg-white/90 text-primary' : course.badgeColor}`}>
                         {course.badge}
@@ -165,10 +165,10 @@ export default function Home() {
               ].map((t, i) => (
                 <div key={i} className={`relative bg-surface-container-lowest p-10 rounded-[2.5rem] shadow-sm ${t.offset ? 'md:translate-y-8' : ''}`}>
                   <div className="absolute -top-6 left-10 w-12 h-12 signature-gradient rounded-2xl flex items-center justify-center text-white text-2xl font-serif">“</div>
-                  <p className="text-on-surface-variant leading-relaxed mb-8 italic">"{t.quote}"</p>
+                  <p className="text-on-surface-variant leading-relaxed mb-8 italic">&quot;{t.quote}&quot;</p>
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-full overflow-hidden bg-slate-200 relative">
-                      <Image src={`https://picsum.photos/seed/user${i}/100/100`} alt={t.name} fill className="object-cover" referrerPolicy="no-referrer" />
+                      <Image src={`https://picsum.photos/seed/user${i}/100/100`} alt={t.name} fill sizes="48px" className="object-cover" referrerPolicy="no-referrer" />
                     </div>
                     <div>
                       <p className="font-bold">{t.name}</p>
@@ -196,7 +196,7 @@ export default function Home() {
               ].map((post, i) => (
                 <Link href="/blog/1" key={i} className="group cursor-pointer block">
                   <div className="aspect-video rounded-[2rem] overflow-hidden mb-6 relative">
-                    <Image src={`https://picsum.photos/seed/${post.img}/600/400`} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+                    <Image src={`https://picsum.photos/seed/${post.img}/600/400`} alt={post.title} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                   </div>
                   <p className="text-primary text-xs font-bold uppercase tracking-widest mb-3">{post.tag} • 5 MIN READ</p>
                   <h3 className="font-headline text-2xl font-bold mb-4 group-hover:text-primary transition-colors">{post.title}</h3>
