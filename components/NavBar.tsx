@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Search, Menu, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export default function NavBar({ showSearch = false }: { showSearch?: boolean }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,26 +35,32 @@ export default function NavBar({ showSearch = false }: { showSearch?: boolean })
           {showSearch && (
             <div className="relative hidden sm:block">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-outline w-4 h-4" />
-              <input 
+              <Input 
                 type="text" 
                 placeholder="Search courses..." 
-                className="bg-surface-container-low border-none rounded-md pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest w-48 lg:w-64 transition-all outline-none"
+                className="bg-surface-container-low border-none rounded-md pl-10 pr-4 py-2 text-sm focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:bg-surface-container-lowest w-48 lg:w-64 transition-all"
               />
             </div>
           )}
-          <Link href="/dashboard" className="hidden md:block px-5 py-2 text-sm font-semibold text-slate-600 hover:bg-blue-50/50 transition-all rounded-full">
-            Log In
+          <Link href="/login" className="hidden md:block">
+            <Button variant="ghost" className="text-slate-600 hover:bg-blue-50/50 hover:text-blue-600 rounded-full font-semibold">
+              Log In
+            </Button>
           </Link>
-          <button className="hidden md:block signature-gradient px-6 py-2.5 rounded-full text-white text-sm font-bold scale-95 active:scale-90 transition-transform">
-            Sign Up
-          </button>
+          <Link href="/signup" className="hidden md:block">
+            <Button className="signature-gradient rounded-full text-white font-bold scale-95 active:scale-90 transition-transform">
+              Sign Up
+            </Button>
+          </Link>
           
-          <button 
-            className="md:hidden p-2 text-slate-600"
+          <Button 
+            variant="ghost"
+            size="icon"
+            className="md:hidden text-slate-600"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -62,10 +70,10 @@ export default function NavBar({ showSearch = false }: { showSearch?: boolean })
           {showSearch && (
             <div className="relative w-full mb-2">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-outline w-4 h-4" />
-              <input 
+              <Input 
                 type="text" 
                 placeholder="Search courses..." 
-                className="w-full bg-surface-container-low border-none rounded-md pl-10 pr-4 py-3 text-sm focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all outline-none"
+                className="w-full bg-surface-container-low border-none rounded-md pl-10 pr-4 py-6 text-sm focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:bg-surface-container-lowest transition-all"
               />
             </div>
           )}
@@ -74,10 +82,12 @@ export default function NavBar({ showSearch = false }: { showSearch?: boolean })
           <Link href="/courses" className="text-slate-600 font-semibold py-2" onClick={() => setIsMenuOpen(false)}>Pathways</Link>
           <Link href="/about" className="text-slate-600 font-semibold py-2" onClick={() => setIsMenuOpen(false)}>About</Link>
           <div className="h-px bg-surface-container w-full my-2"></div>
-          <Link href="/dashboard" className="text-slate-600 font-semibold py-2" onClick={() => setIsMenuOpen(false)}>Log In</Link>
-          <button className="signature-gradient w-full py-3 rounded-full text-white text-sm font-bold mt-2">
-            Sign Up
-          </button>
+          <Link href="/login" className="text-slate-600 font-semibold py-2" onClick={() => setIsMenuOpen(false)}>Log In</Link>
+          <Link href="/signup" onClick={() => setIsMenuOpen(false)}>
+            <Button className="signature-gradient w-full py-6 rounded-full text-white text-base font-bold mt-2">
+              Sign Up
+            </Button>
+          </Link>
         </div>
       )}
     </nav>

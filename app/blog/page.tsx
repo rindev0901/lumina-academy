@@ -3,6 +3,9 @@ import Footer from '@/components/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
 
 export default function BlogListPage() {
   return (
@@ -18,9 +21,9 @@ export default function BlogListPage() {
                 <Image src="https://picsum.photos/seed/featured-blog/800/800" alt="Featured Article" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
               </div>
               <div className="p-5 md:p-8 lg:p-12">
-                <span className="inline-block px-3 py-1 md:px-4 md:py-1.5 bg-primary-fixed text-on-primary-fixed-variant text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-full mb-4 md:mb-6">
+                <Badge className="bg-primary-fixed text-on-primary-fixed-variant hover:bg-primary-fixed text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-full mb-4 md:mb-6">
                   FEATURED ARTICLE
-                </span>
+                </Badge>
                 <h1 className="text-3xl md:text-5xl font-headline font-extrabold tracking-tight text-on-surface mb-4 md:mb-6 leading-tight group-hover:text-primary transition-colors">
                   The Future of Intelligent Learning Systems in 2024
                 </h1>
@@ -46,9 +49,9 @@ export default function BlogListPage() {
             <div className="lg:col-span-2">
               <div className="flex items-center justify-between mb-6 md:mb-10 border-b border-surface-container pb-4">
                 <h2 className="text-2xl md:text-3xl font-headline font-bold">Recent Insights</h2>
-                <button className="text-primary font-bold text-xs md:text-sm flex items-center gap-1 hover:text-primary-container">
+                <Button variant="ghost" className="text-primary font-bold text-xs md:text-sm flex items-center gap-1 hover:text-primary-container">
                   LATEST <ChevronDown className="w-4 h-4" />
-                </button>
+                </Button>
               </div>
 
               <div className="space-y-8 md:space-y-12">
@@ -76,13 +79,13 @@ export default function BlogListPage() {
 
               {/* Pagination */}
               <div className="flex items-center justify-center gap-2 mt-12 md:mt-16">
-                <button className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-surface-container flex items-center justify-center text-outline hover:bg-surface-container-low transition-colors"><ChevronLeft className="w-4 h-4 md:w-5 md:h-5" /></button>
-                <button className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary text-white font-bold text-sm md:text-base">1</button>
-                <button className="w-8 h-8 md:w-10 md:h-10 rounded-full hover:bg-surface-container-low font-bold text-on-surface-variant transition-colors text-sm md:text-base">2</button>
-                <button className="w-8 h-8 md:w-10 md:h-10 rounded-full hover:bg-surface-container-low font-bold text-on-surface-variant transition-colors text-sm md:text-base">3</button>
+                <Button variant="outline" size="icon" className="w-8 h-8 md:w-10 md:h-10 rounded-full border-surface-container text-outline hover:bg-surface-container-low transition-colors"><ChevronLeft className="w-4 h-4 md:w-5 md:h-5" /></Button>
+                <Button className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary text-white font-bold text-sm md:text-base">1</Button>
+                <Button variant="ghost" className="w-8 h-8 md:w-10 md:h-10 rounded-full hover:bg-surface-container-low font-bold text-on-surface-variant transition-colors text-sm md:text-base">2</Button>
+                <Button variant="ghost" className="w-8 h-8 md:w-10 md:h-10 rounded-full hover:bg-surface-container-low font-bold text-on-surface-variant transition-colors text-sm md:text-base">3</Button>
                 <span className="text-outline">...</span>
-                <button className="w-8 h-8 md:w-10 md:h-10 rounded-full hover:bg-surface-container-low font-bold text-on-surface-variant transition-colors text-sm md:text-base">12</button>
-                <button className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-surface-container flex items-center justify-center text-outline hover:bg-surface-container-low transition-colors"><ChevronRight className="w-4 h-4 md:w-5 md:h-5" /></button>
+                <Button variant="ghost" className="w-8 h-8 md:w-10 md:h-10 rounded-full hover:bg-surface-container-low font-bold text-on-surface-variant transition-colors text-sm md:text-base">12</Button>
+                <Button variant="outline" size="icon" className="w-8 h-8 md:w-10 md:h-10 rounded-full border-surface-container text-outline hover:bg-surface-container-low transition-colors"><ChevronRight className="w-4 h-4 md:w-5 md:h-5" /></Button>
               </div>
             </div>
 
@@ -94,7 +97,7 @@ export default function BlogListPage() {
                 <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-outline mb-3 md:mb-4">SEARCH</h3>
                 <div className="relative">
                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-outline w-4 h-4 md:w-5 md:h-5" />
-                  <input type="text" placeholder="Search articles..." className="w-full bg-surface-container-lowest border border-surface-container rounded-xl pl-10 md:pl-12 pr-4 py-3 md:py-4 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all" />
+                  <Input type="text" placeholder="Search articles..." className="w-full bg-surface-container-lowest border-surface-container rounded-xl pl-10 md:pl-12 pr-4 py-6 text-sm md:text-base focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:border-primary transition-all" />
                 </div>
               </div>
 
@@ -145,8 +148,8 @@ export default function BlogListPage() {
                 <h3 className="text-xl md:text-2xl font-headline font-bold mb-2 md:mb-3 relative z-10">Elevate Your Inbox</h3>
                 <p className="text-white/80 text-xs md:text-sm mb-4 md:mb-6 relative z-10">Get the best of educational technology delivered weekly to your email.</p>
                 <form className="relative z-10 space-y-3">
-                  <input type="email" placeholder="Your email" className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-2.5 md:py-3 text-sm md:text-base text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50" />
-                  <button type="button" className="w-full bg-white text-primary font-bold py-2.5 md:py-3 rounded-xl text-sm md:text-base hover:bg-blue-50 transition-colors">Subscribe</button>
+                  <Input type="email" placeholder="Your email" className="w-full bg-black/20 border-white/10 rounded-xl px-4 h-12 text-sm md:text-base text-white placeholder:text-white/50 focus-visible:ring-2 focus-visible:ring-white/50" />
+                  <Button type="button" className="w-full bg-white text-primary font-bold h-12 rounded-xl text-sm md:text-base hover:bg-blue-50 transition-colors">Subscribe</Button>
                 </form>
               </div>
 

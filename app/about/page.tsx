@@ -2,6 +2,7 @@ import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import { Users, Target, Zap, Globe, Shield, Award } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 
 export default function AboutPage() {
   return (
@@ -12,7 +13,7 @@ export default function AboutPage() {
         {/* Hero Section */}
         <section className="relative py-20 md:py-32 px-4 md:px-8 overflow-hidden bg-surface-container-lowest">
           <div className="max-w-7xl mx-auto text-center relative z-10">
-            <span className="inline-block px-4 py-1.5 mb-6 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-[10px] md:text-xs font-bold tracking-widest uppercase font-label">Our Mission</span>
+            <Badge className="bg-primary-fixed text-on-primary-fixed-variant hover:bg-primary-fixed text-[10px] md:text-xs font-bold tracking-widest uppercase font-label rounded-full mb-6">Our Mission</Badge>
             <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-on-surface leading-[1.1] mb-6 md:mb-8 max-w-4xl mx-auto">
               Democratizing <span className="text-primary">world-class</span> education for everyone.
             </h1>

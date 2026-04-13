@@ -3,6 +3,9 @@ import Footer from '@/components/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Share2, Heart, Bookmark, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
 
 export default function BlogDetailPage() {
   return (
@@ -12,9 +15,9 @@ export default function BlogDetailPage() {
         
         {/* Header */}
         <header className="max-w-4xl mx-auto px-4 md:px-8 pt-8 md:pt-16 pb-8 md:pb-12 text-center">
-          <span className="inline-block px-3 py-1 md:px-4 md:py-1.5 bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold uppercase tracking-widest rounded-full mb-4 md:mb-6">
+          <Badge className="bg-primary-fixed text-on-primary-fixed-variant hover:bg-primary-fixed text-[10px] font-bold uppercase tracking-widest rounded-full mb-4 md:mb-6">
             ARTIFICIAL INTELLIGENCE
-          </span>
+          </Badge>
           <h1 className="text-3xl md:text-6xl font-headline font-extrabold tracking-tight text-on-surface mb-6 md:mb-8 leading-[1.2] md:leading-[1.1]">
             The Intelligent Canvas: How Generative AI is Redefining Personalised Learning
           </h1>
@@ -30,16 +33,16 @@ export default function BlogDetailPage() {
             </div>
             
             {/* Mobile Social Share */}
-            <div className="flex lg:hidden items-center gap-3 mt-2 sm:mt-0 sm:ml-4 sm:pl-4 sm:border-l border-surface-container">
-              <button className="w-8 h-8 rounded-full bg-surface-container-lowest border border-surface-container flex items-center justify-center text-outline hover:text-primary hover:border-primary transition-all">
+            <div className="flex lg:hidden items-center gap-2 mt-2 sm:mt-0 sm:ml-4 sm:pl-4 sm:border-l border-surface-container">
+              <Button variant="outline" size="icon" className="w-8 h-8 rounded-full border-surface-container text-outline hover:text-primary hover:border-primary transition-all">
                 <Share2 className="w-3.5 h-3.5" />
-              </button>
-              <button className="w-8 h-8 rounded-full bg-surface-container-lowest border border-surface-container flex items-center justify-center text-outline hover:text-error hover:border-error transition-all">
+              </Button>
+              <Button variant="outline" size="icon" className="w-8 h-8 rounded-full border-surface-container text-outline hover:text-error hover:border-error transition-all">
                 <Heart className="w-3.5 h-3.5" />
-              </button>
-              <button className="w-8 h-8 rounded-full bg-surface-container-lowest border border-surface-container flex items-center justify-center text-outline hover:text-primary hover:border-primary transition-all">
+              </Button>
+              <Button variant="outline" size="icon" className="w-8 h-8 rounded-full border-surface-container text-outline hover:text-primary hover:border-primary transition-all">
                 <Bookmark className="w-3.5 h-3.5" />
-              </button>
+              </Button>
             </div>
           </div>
         </header>
@@ -57,15 +60,15 @@ export default function BlogDetailPage() {
           {/* Social Share (Left Sidebar - Desktop) */}
           <div className="hidden lg:block lg:col-span-1">
             <div className="sticky top-32 flex flex-col gap-4">
-              <button className="w-10 h-10 rounded-full bg-surface-container-lowest border border-surface-container flex items-center justify-center text-outline hover:text-primary hover:border-primary transition-all">
+              <Button variant="outline" size="icon" className="w-10 h-10 rounded-full border-surface-container text-outline hover:text-primary hover:border-primary transition-all">
                 <Share2 className="w-4 h-4" />
-              </button>
-              <button className="w-10 h-10 rounded-full bg-surface-container-lowest border border-surface-container flex items-center justify-center text-outline hover:text-error hover:border-error transition-all">
+              </Button>
+              <Button variant="outline" size="icon" className="w-10 h-10 rounded-full border-surface-container text-outline hover:text-error hover:border-error transition-all">
                 <Heart className="w-4 h-4" />
-              </button>
-              <button className="w-10 h-10 rounded-full bg-surface-container-lowest border border-surface-container flex items-center justify-center text-outline hover:text-primary hover:border-primary transition-all">
+              </Button>
+              <Button variant="outline" size="icon" className="w-10 h-10 rounded-full border-surface-container text-outline hover:text-primary hover:border-primary transition-all">
                 <Bookmark className="w-4 h-4" />
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -113,8 +116,8 @@ export default function BlogDetailPage() {
                 <h4 className="font-bold text-sm mb-2">Subscribe to our newsletter</h4>
                 <p className="text-xs text-on-surface-variant mb-4">Get the latest insights on education and technology.</p>
                 <form className="space-y-3">
-                  <input type="email" placeholder="Email address" className="w-full bg-surface-container-low border-none rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/40 outline-none" />
-                  <button type="button" className="w-full bg-primary text-white font-bold py-2.5 rounded-lg text-sm hover:bg-primary-container transition-colors">Join 15k+ Learners</button>
+                  <Input type="email" placeholder="Email address" className="w-full bg-surface-container-low border-none rounded-lg px-4 py-6 text-sm focus-visible:ring-2 focus-visible:ring-primary/40" />
+                  <Button type="button" className="w-full bg-primary text-white font-bold py-6 rounded-lg text-sm hover:bg-primary-container transition-colors">Join 15k+ Learners</Button>
                 </form>
               </div>
             </div>
