@@ -1,14 +1,16 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { loginGoogle } from "@/lib/actions";
 
 const GoogleAuth = () => {
   return (
-    <button
+    <Button
+      variant="outline"
       type="button"
-      className="flex items-center justify-center gap-2 border border-surface-container rounded-xl py-3 hover:bg-surface-container-lowest transition-colors"
-        onClick={() =>  loginGoogle()}
-      >
+      className="flex items-center justify-center gap-2 border-surface-container rounded-xl h-12 hover:bg-surface-container-lowest transition-colors"
+      onClick={() => loginGoogle()}
+    >
       <svg
         width="20"
         height="20"
@@ -34,7 +36,7 @@ const GoogleAuth = () => {
         />
       </svg>
       <span className="font-bold text-sm text-on-surface">Google</span>
-    </button>
+    </Button>
   );
 };
 
