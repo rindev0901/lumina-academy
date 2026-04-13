@@ -1,6 +1,10 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Eye, Mail, Lock, User } from "lucide-react";
+import Image from 'next/image';
+import Link from 'next/link';
+import { Eye, Mail, Lock, User } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
 
 export default function SignUpPage() {
   return (
@@ -21,7 +25,7 @@ export default function SignUpPage() {
 
         {/* Hero Image */}
         <div className="px-6 pb-6">
-          <div className="relative w-full aspect-[2/1] rounded-2xl overflow-hidden">
+          <div className="relative w-full aspect-2/1 rounded-2xl overflow-hidden">
             <Image
               src="https://picsum.photos/seed/laptop/800/400"
               alt="Learning"
@@ -83,44 +87,41 @@ export default function SignUpPage() {
           </div>
 
           <form className="space-y-5">
-            <div>
-              <label className="block text-sm font-bold text-on-surface mb-2">
-                Full Name
-              </label>
+            <div className="space-y-2">
+              <Label htmlFor="name" className="text-sm font-bold text-on-surface">Full Name</Label>
               <div className="relative">
                 <User className="absolute left-4 top-1/2 -translate-y-1/2 text-outline w-5 h-5" />
-                <input
-                  type="text"
-                  placeholder="John Doe"
-                  className="w-full bg-surface-container-lowest border border-surface-container rounded-xl pl-12 pr-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all text-on-surface"
+                <Input 
+                  id="name"
+                  type="text" 
+                  placeholder="John Doe" 
+                  className="bg-surface-container-lowest border-surface-container rounded-xl pl-12 pr-4 py-6 focus-visible:ring-primary/40 focus-visible:border-primary transition-all text-on-surface"
                 />
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-bold text-on-surface mb-2">
-                Email Address
-              </label>
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-sm font-bold text-on-surface">Email Address</Label>
               <div className="relative">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-outline w-5 h-5" />
-                <input
-                  type="email"
-                  placeholder="name@example.com"
-                  className="w-full bg-surface-container-lowest border border-surface-container rounded-xl pl-12 pr-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all text-on-surface"
+                <Input 
+                  id="email"
+                  type="email" 
+                  placeholder="name@example.com" 
+                  className="bg-surface-container-lowest border-surface-container rounded-xl pl-12 pr-4 py-6 focus-visible:ring-primary/40 focus-visible:border-primary transition-all text-on-surface"
                 />
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-bold text-on-surface mb-2">
-                Password
-              </label>
+            <div className="space-y-2">
+              <Label htmlFor="password" className="text-sm font-bold text-on-surface">Password</Label>
               <div className="relative">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-outline w-5 h-5" />
-                <input
-                  type="password"
-                  placeholder="Min. 8 characters"
-                  className="w-full bg-surface-container-lowest border border-surface-container rounded-xl pl-12 pr-12 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all text-on-surface"
+                <Input 
+                  id="password"
+                  type="password" 
+                  placeholder="Min. 8 characters" 
+                  className="bg-surface-container-lowest border-surface-container rounded-xl pl-12 pr-12 py-6 focus-visible:ring-primary/40 focus-visible:border-primary transition-all text-on-surface"
                 />
                 <button
                   type="button"
@@ -132,39 +133,15 @@ export default function SignUpPage() {
             </div>
 
             <div className="flex items-start gap-3 pt-2">
-              <input
-                type="checkbox"
-                id="terms"
-                className="w-5 h-5 rounded border-surface-container text-primary focus:ring-primary/40 mt-0.5"
-              />
-              <label
-                htmlFor="terms"
-                className="text-sm text-on-surface-variant leading-relaxed"
-              >
-                I agree to the{" "}
-                <Link
-                  href="#"
-                  className="text-primary font-bold hover:underline"
-                >
-                  Terms and Conditions
-                </Link>{" "}
-                and{" "}
-                <Link
-                  href="#"
-                  className="text-primary font-bold hover:underline"
-                >
-                  Privacy Policy
-                </Link>
-                .
-              </label>
+              <Checkbox id="terms" className="border-surface-container text-primary data-[state=checked]:bg-primary data-[state=checked]:text-white mt-0.5" />
+              <Label htmlFor="terms" className="text-sm font-normal text-on-surface-variant leading-relaxed cursor-pointer">
+                I agree to the <Link href="#" className="text-primary font-bold hover:underline">Terms and Conditions</Link> and <Link href="#" className="text-primary font-bold hover:underline">Privacy Policy</Link>.
+              </Label>
             </div>
 
-            <button
-              type="button"
-              className="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-primary/90 transition-colors mt-4"
-            >
+            <Button type="button" className="w-full bg-primary text-white font-bold h-14 rounded-xl hover:bg-primary/90 transition-colors mt-4 text-base">
               Create Account
-            </button>
+            </Button>
           </form>
 
           <p className="text-center mt-8 text-on-surface-variant">

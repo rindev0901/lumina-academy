@@ -6,6 +6,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Filter, ArrowRight, Star, School, Award, Users, Settings, HelpCircle, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
 
 export default function CoursesPage() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -46,7 +49,7 @@ export default function CoursesPage() {
         <div className="p-6">
           <div className="bg-primary-fixed p-4 rounded-xl">
             <p className="text-xs font-bold text-on-primary-fixed-variant mb-2">UNLOCK EVERYTHING</p>
-            <button className="w-full signature-gradient text-on-primary py-2 rounded-lg text-xs font-bold">Go Premium</button>
+            <Button className="w-full signature-gradient text-on-primary py-2 rounded-lg text-xs font-bold">Go Premium</Button>
           </div>
         </div>
         <div className="p-4 border-t border-surface-container mt-auto">
@@ -69,12 +72,13 @@ export default function CoursesPage() {
               
               {/* Mobile Filters & Sort */}
               <div className="flex md:hidden gap-4 w-full">
-                <button 
+                <Button 
+                  variant="secondary"
                   onClick={() => setIsFilterOpen(true)}
-                  className="flex-1 bg-surface-container-low flex items-center justify-center gap-2 rounded-lg text-sm font-semibold py-3"
+                  className="flex-1 bg-surface-container-low flex items-center justify-center gap-2 rounded-lg text-sm font-semibold py-6"
                 >
                   <Filter className="w-4 h-4" /> Filters
-                </button>
+                </Button>
                 <select className="flex-1 bg-surface-container-low border-none rounded-lg text-sm font-semibold px-4 py-3 focus:ring-2 focus:ring-primary/20 outline-none appearance-none text-center">
                   <option>Popular</option>
                   <option>Newest</option>
@@ -108,9 +112,9 @@ export default function CoursesPage() {
                   <div className="w-12 h-1.5 bg-surface-container-high rounded-full mx-auto mb-6"></div>
                   <div className="flex items-center justify-between mb-8">
                     <h2 className="text-xl font-headline font-bold">Filters</h2>
-                    <button onClick={() => setIsFilterOpen(false)} className="p-2 hover:bg-surface-container-low rounded-full transition-colors">
+                    <Button variant="ghost" size="icon" onClick={() => setIsFilterOpen(false)} className="rounded-full">
                       <X className="w-6 h-6" />
-                    </button>
+                    </Button>
                   </div>
                   <FilterContent />
                 </div>
@@ -160,13 +164,13 @@ export default function CoursesPage() {
 
               {/* Pagination */}
               <div className="flex items-center justify-center gap-2 mt-12 md:mt-16">
-                <button className="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-outline hover:bg-surface-container-low transition-colors"><ChevronLeft className="w-4 h-4 md:w-5 md:h-5" /></button>
-                <button className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary text-white font-bold text-sm md:text-base">1</button>
-                <button className="w-8 h-8 md:w-10 md:h-10 rounded-full hover:bg-surface-container-low font-bold text-on-surface-variant transition-colors text-sm md:text-base">2</button>
-                <button className="w-8 h-8 md:w-10 md:h-10 rounded-full hover:bg-surface-container-low font-bold text-on-surface-variant transition-colors text-sm md:text-base">3</button>
+                <Button variant="ghost" size="icon" className="w-8 h-8 md:w-10 md:h-10 rounded-full text-outline hover:bg-surface-container-low transition-colors"><ChevronLeft className="w-4 h-4 md:w-5 md:h-5" /></Button>
+                <Button className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary text-white font-bold text-sm md:text-base">1</Button>
+                <Button variant="ghost" className="w-8 h-8 md:w-10 md:h-10 rounded-full hover:bg-surface-container-low font-bold text-on-surface-variant transition-colors text-sm md:text-base">2</Button>
+                <Button variant="ghost" className="w-8 h-8 md:w-10 md:h-10 rounded-full hover:bg-surface-container-low font-bold text-on-surface-variant transition-colors text-sm md:text-base">3</Button>
                 <span className="text-outline">...</span>
-                <button className="w-8 h-8 md:w-10 md:h-10 rounded-full hover:bg-surface-container-low font-bold text-on-surface-variant transition-colors text-sm md:text-base">12</button>
-                <button className="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-outline hover:bg-surface-container-low transition-colors"><ChevronRight className="w-4 h-4 md:w-5 md:h-5" /></button>
+                <Button variant="ghost" className="w-8 h-8 md:w-10 md:h-10 rounded-full hover:bg-surface-container-low font-bold text-on-surface-variant transition-colors text-sm md:text-base">12</Button>
+                <Button variant="ghost" size="icon" className="w-8 h-8 md:w-10 md:h-10 rounded-full text-outline hover:bg-surface-container-low transition-colors"><ChevronRight className="w-4 h-4 md:w-5 md:h-5" /></Button>
               </div>
             </div>
           </div>
@@ -189,10 +193,10 @@ function FilterContent() {
         </h3>
         <div className="space-y-4 md:space-y-3">
           {['Programming', 'Design', 'Data Science', 'Marketing'].map((cat, i) => (
-            <label key={cat} className="flex items-center gap-3 cursor-pointer group">
-              <input type="checkbox" defaultChecked={i === 0} className="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary/20" />
+            <Label key={cat} className="flex items-center gap-3 cursor-pointer group font-normal">
+              <Checkbox defaultChecked={i === 0} className="border-outline-variant text-primary data-[state=checked]:bg-primary data-[state=checked]:text-white" />
               <span className="text-sm text-on-surface-variant group-hover:text-primary transition-colors">{cat}</span>
-            </label>
+            </Label>
           ))}
         </div>
       </div>
@@ -200,14 +204,14 @@ function FilterContent() {
       <div>
         <h3 className="text-sm font-headline font-bold text-on-surface mb-4 md:mb-6">Price</h3>
         <div className="space-y-4 md:space-y-3">
-          <label className="flex items-center gap-3 cursor-pointer group">
+          <Label className="flex items-center gap-3 cursor-pointer group font-normal">
             <input type="radio" name="price" className="w-5 h-5 border-outline-variant text-primary focus:ring-primary/20" />
             <span className="text-sm text-on-surface-variant group-hover:text-primary transition-colors">Free</span>
-          </label>
-          <label className="flex items-center gap-3 cursor-pointer group">
+          </Label>
+          <Label className="flex items-center gap-3 cursor-pointer group font-normal">
             <input type="radio" name="price" defaultChecked className="w-5 h-5 border-outline-variant text-primary focus:ring-primary/20" />
             <span className="text-sm text-on-surface-variant group-hover:text-primary transition-colors">Paid</span>
-          </label>
+          </Label>
         </div>
       </div>
       <div className="h-px bg-surface-container-high"></div>
@@ -215,10 +219,10 @@ function FilterContent() {
         <h3 className="text-sm font-headline font-bold text-on-surface mb-4 md:mb-6">Level</h3>
         <div className="space-y-4 md:space-y-3">
           {['Beginner', 'Intermediate', 'Advanced'].map((lvl, i) => (
-            <label key={lvl} className="flex items-center gap-3 cursor-pointer group">
-              <input type="checkbox" defaultChecked={i === 1} className="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary/20" />
+            <Label key={lvl} className="flex items-center gap-3 cursor-pointer group font-normal">
+              <Checkbox defaultChecked={i === 1} className="border-outline-variant text-primary data-[state=checked]:bg-primary data-[state=checked]:text-white" />
               <span className="text-sm text-on-surface-variant group-hover:text-primary transition-colors">{lvl}</span>
-            </label>
+            </Label>
           ))}
         </div>
       </div>

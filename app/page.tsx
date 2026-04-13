@@ -3,6 +3,8 @@ import Footer from '@/components/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 import { TrendingUp, ArrowRight, ShoppingCart, Star } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export default function Home() {
   return (
@@ -21,8 +23,12 @@ export default function Home() {
                 Accelerate your career with curated learning paths designed by industry experts. Join 50,000+ students mastering AI, Design, and Engineering.
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center lg:justify-start">
-                <Link href="/courses" className="signature-gradient px-8 py-4 rounded-full text-white font-bold text-base md:text-lg shadow-lg shadow-blue-500/20 active:scale-95 transition-all w-full sm:w-auto">Enroll Now</Link>
-                <Link href="/courses" className="px-8 py-4 rounded-full border border-outline-variant/30 text-primary font-bold text-base md:text-lg hover:bg-surface-container-low transition-all w-full sm:w-auto">Browse Courses</Link>
+                <Link href="/courses" className="w-full sm:w-auto">
+                  <Button className="signature-gradient px-8 h-14 rounded-full text-white font-bold text-base md:text-lg shadow-lg shadow-blue-500/20 active:scale-95 transition-all w-full">Enroll Now</Button>
+                </Link>
+                <Link href="/courses" className="w-full sm:w-auto">
+                  <Button variant="outline" className="px-8 h-14 rounded-full border-outline-variant/30 text-primary font-bold text-base md:text-lg hover:bg-surface-container-low transition-all w-full">Browse Courses</Button>
+                </Link>
               </div>
             </div>
             <div className="relative w-full max-w-md mx-auto lg:max-w-none mt-8 lg:mt-0">
@@ -139,9 +145,9 @@ export default function Home() {
                     <p className="text-sm text-on-surface-variant mb-6">{course.author}</p>
                     <div className="flex justify-between items-center">
                       <span className="text-xl font-black text-on-surface">{course.price}</span>
-                      <button className="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+                      <Button variant="outline" size="icon" className="rounded-full border-outline-variant/30 hover:bg-primary hover:text-white transition-all">
                         <ShoppingCart className="w-5 h-5" />
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 </Link>
@@ -186,7 +192,9 @@ export default function Home() {
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-center mb-12 md:mb-16 gap-4">
               <h2 className="font-headline text-3xl font-extrabold tracking-tight">From the Journal</h2>
-              <Link href="/blog/1" className="px-6 py-2 rounded-full border border-outline-variant/30 text-sm font-bold hover:bg-surface-container-low transition-all">Read More</Link>
+              <Link href="/blog/1">
+                <Button variant="outline" className="rounded-full border-outline-variant/30 font-bold hover:bg-surface-container-low transition-all">Read More</Button>
+              </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
               {[
@@ -216,8 +224,8 @@ export default function Home() {
               <h2 className="font-headline text-3xl md:text-5xl font-extrabold tracking-tight mb-4 md:mb-6">Stay ahead of the curve</h2>
               <p className="text-white/80 mb-8 md:mb-12 text-sm md:text-lg">Weekly insights on tech trends, career opportunities, and course updates delivered straight to your inbox.</p>
               <form className="flex flex-col sm:flex-row gap-3 md:gap-4 max-w-lg mx-auto">
-                <input type="email" placeholder="Your work email" className="flex-grow px-6 py-3 md:px-8 md:py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/60 focus:bg-white/20 focus:outline-none transition-all outline-none text-sm md:text-base" />
-                <button type="button" className="bg-white text-primary font-bold px-6 py-3 md:px-8 md:py-4 rounded-full hover:bg-blue-50 transition-all text-sm md:text-base">Join Now</button>
+                <Input type="email" placeholder="Your work email" className="flex-grow h-12 md:h-14 rounded-full bg-white/10 border-white/20 text-white placeholder:text-white/60 focus-visible:bg-white/20 transition-all text-sm md:text-base px-6 md:px-8" />
+                <Button type="button" className="bg-white text-primary font-bold h-12 md:h-14 rounded-full hover:bg-blue-50 transition-all text-sm md:text-base px-8">Join Now</Button>
               </form>
               <p className="mt-4 md:mt-6 text-[10px] md:text-xs text-white/50">No spam, ever. Unsubscribe at any time.</p>
             </div>

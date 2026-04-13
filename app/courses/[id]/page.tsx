@@ -3,6 +3,8 @@ import Footer from '@/components/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Star, PlayCircle, ChevronDown, Monitor, FileText, Infinity, Smartphone, Award, Share2, Heart, Users, ShoppingCart } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 export default function CourseDetailPage() {
   return (
@@ -17,9 +19,9 @@ export default function CourseDetailPage() {
               
               {/* Header Info */}
               <div className="order-2 lg:order-1">
-                <span className="inline-block px-3 py-1 bg-tertiary-fixed text-tertiary text-[10px] font-bold uppercase tracking-widest rounded-full mb-4 md:mb-6">
+                <Badge className="bg-tertiary-fixed text-tertiary hover:bg-tertiary-fixed text-[10px] font-bold uppercase tracking-widest rounded-full mb-4 md:mb-6">
                   BESTSELLER
-                </span>
+                </Badge>
                 <h1 className="text-3xl md:text-5xl font-headline font-extrabold tracking-tight text-on-surface mb-4 md:mb-6 leading-tight">
                   Advanced Design Systems for Modern SaaS
                 </h1>
@@ -184,12 +186,12 @@ export default function CourseDetailPage() {
                   </div>
 
                   <div className="space-y-3">
-                    <button className="w-full signature-gradient text-white font-bold py-4 rounded-full hover:shadow-lg hover:shadow-primary/30 transition-all active:scale-95">
+                    <Button className="w-full signature-gradient text-white font-bold py-6 rounded-full hover:shadow-lg hover:shadow-primary/30 transition-all active:scale-95 text-base">
                       Enroll Now
-                    </button>
-                    <button className="w-full bg-white border-2 border-primary text-primary font-bold py-4 rounded-full hover:bg-primary-fixed/30 transition-all active:scale-95">
+                    </Button>
+                    <Button variant="outline" className="w-full bg-white border-2 border-primary text-primary font-bold py-6 rounded-full hover:bg-primary-fixed/30 transition-all active:scale-95 text-base">
                       Add to Cart
-                    </button>
+                    </Button>
                   </div>
                 </div>
 
@@ -207,9 +209,9 @@ export default function CourseDetailPage() {
                 {/* Desktop Share */}
                 <div className="hidden md:flex items-center justify-between pt-6 border-t border-surface-container">
                   <span className="font-bold text-sm">Share this course</span>
-                  <div className="flex gap-4">
-                    <button className="text-outline hover:text-primary transition-colors"><Share2 className="w-5 h-5" /></button>
-                    <button className="text-outline hover:text-error transition-colors"><Heart className="w-5 h-5" /></button>
+                  <div className="flex gap-2">
+                    <Button variant="ghost" size="icon" className="text-outline hover:text-primary transition-colors rounded-full"><Share2 className="w-5 h-5" /></Button>
+                    <Button variant="ghost" size="icon" className="text-outline hover:text-error transition-colors rounded-full"><Heart className="w-5 h-5" /></Button>
                   </div>
                 </div>
               </div>
@@ -229,10 +231,10 @@ export default function CourseDetailPage() {
           <span className="text-xs text-outline line-through leading-none">$149.99</span>
         </div>
         <div className="flex gap-2">
-          <button className="bg-primary text-white font-bold py-2.5 px-6 rounded-lg text-sm active:scale-95 transition-transform">Enroll Now</button>
-          <button className="border border-surface-container p-2.5 rounded-lg active:scale-95 transition-transform flex items-center justify-center">
+          <Button className="bg-primary text-white font-bold h-10 px-6 rounded-lg text-sm active:scale-95 transition-transform">Enroll Now</Button>
+          <Button variant="outline" size="icon" className="border-surface-container h-10 w-10 rounded-lg active:scale-95 transition-transform flex items-center justify-center">
             <ShoppingCart className="w-5 h-5 text-on-surface" />
-          </button>
+          </Button>
         </div>
       </div>
 

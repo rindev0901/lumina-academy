@@ -2,6 +2,7 @@ import NavBar from '@/components/NavBar';
 import Image from 'next/image';
 import Link from 'next/link';
 import { School, Award, Users, Settings, HelpCircle, PlayCircle, Clock, CheckCircle2, TrendingUp, BookOpen } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function DashboardPage() {
   return (
@@ -40,7 +41,7 @@ export default function DashboardPage() {
         <div className="p-6">
           <div className="bg-primary-fixed p-4 rounded-xl">
             <p className="text-xs font-bold text-on-primary-fixed-variant mb-2">UNLOCK EVERYTHING</p>
-            <button className="w-full signature-gradient text-on-primary py-2 rounded-lg text-xs font-bold">Go Premium</button>
+            <Button className="w-full signature-gradient text-on-primary py-2 rounded-lg text-xs font-bold">Go Premium</Button>
           </div>
         </div>
         <div className="p-4 border-t border-surface-container mt-auto">
@@ -204,9 +205,9 @@ export default function DashboardPage() {
                     </div>
                   </div>
                 </div>
-                <button className="w-full mt-6 py-2 text-sm font-bold text-primary hover:bg-primary-fixed/30 rounded-lg transition-colors">
+                <Button variant="ghost" className="w-full mt-6 py-2 text-sm font-bold text-primary hover:bg-primary-fixed/30 rounded-lg transition-colors">
                   View All Activity
-                </button>
+                </Button>
               </div>
             </div>
 
