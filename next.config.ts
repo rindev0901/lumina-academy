@@ -2,12 +2,20 @@ import type { NextConfig } from "next";
 import path from "path";
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
+  typedRoutes: true,
+  reactStrictMode: false,
+  reactCompiler: true,
   typescript: {
     ignoreBuildErrors: false,
   },
+  cacheComponents: true,
   turbopack: {
     root: path.join(__dirname, ".."),
+  },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
   },
   // Allow access to remote image placeholder.
   images: {
@@ -21,6 +29,10 @@ const nextConfig: NextConfig = {
     ],
   },
   transpilePackages: ["motion"],
+  cacheHandlers: {
+    default: require.resolve("./cache-handlers/default-handler.js"),
+    remote: require.resolve("./cache-handlers/remote-handler.js"),
+  },
 };
 
 export default nextConfig;

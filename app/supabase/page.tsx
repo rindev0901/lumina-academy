@@ -1,21 +1,20 @@
-import { createClient } from "@/lib/supabase/server";
+import Todos from "./todos";
+import { Suspense } from "react";
+import User from "./user";
+import { Form } from "./form";
+import Link from "next/link";
 
 export default async function Page() {
-  const supabase = await createClient();
-
-  const { data: todos } = await supabase.from("todos").select();
-
-  const user = await supabase.auth.getUser();
-
   return (
-    <>
-      <ul>
-        {todos?.map((todo) => (
-          <li key={todo.id}>{todo.name}</li>
-        ))}
-      </ul>
-
-      <pre>{JSON.stringify(user, null, 2)}</pre>
-    </>
+    <div className="container mx-auto">
+      <Link href={'/'}>Back to home</Link>
+      <Form />
+      <Suspense fallback="Todos loading....">
+        <Todos />
+      </Suspense>
+      <Suspense fallback="User loading...">
+        <User />
+      </Suspense>
+    </div>
   );
 }

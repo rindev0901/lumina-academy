@@ -2,6 +2,7 @@
 
 import { redirect, unstable_rethrow } from "next/navigation";
 import { createClient } from "./supabase/server";
+import { Route } from "next";
 
 async function loginGoogle() {
   const supabase = await createClient();
@@ -9,7 +10,7 @@ async function loginGoogle() {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/callback?next=/`,
+        redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/callback?next=/supabase`,
         queryParams: {
           access_type: "offline",
           prompt: "consent",
@@ -25,7 +26,7 @@ async function loginGoogle() {
     }
 
     if (data.url) {
-      redirect(data.url);
+      redirect(data.url as Route);
     }
   } catch (error) {
     unstable_rethrow(error);
