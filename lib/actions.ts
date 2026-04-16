@@ -3,9 +3,12 @@
 import { redirect, unstable_rethrow } from "next/navigation";
 import { createClient } from "./supabase/server";
 import { Route } from "next";
+import { cookies } from "next/headers";
 
 async function loginGoogle() {
-  const supabase = await createClient();
+  const cookieStore = await cookies();
+
+  const supabase = await createClient(cookieStore);
   try {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",

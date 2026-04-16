@@ -18,7 +18,7 @@ async function getUsers() {
 
 async function getTodos() {
   "use cache: remote";
-  cacheLife("days");
+  cacheLife("minutes");
   cacheTag("todos");
   const supabase = await createClient();
 
@@ -26,4 +26,16 @@ async function getTodos() {
 
   return todos;
 }
-export { getTodos, getUsers };
+
+async function getStudents() {
+  "use cache: remote";
+  cacheLife("days");
+  cacheTag("students");
+  const supabase = await createClient();
+
+  const { data: students } = await supabase.from("students").select();
+
+  return students;
+}
+
+export { getTodos, getUsers, getStudents };

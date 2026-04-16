@@ -14,6 +14,21 @@ export type Database = {
   }
   public: {
     Tables: {
+      students: {
+        Row: {
+          id: number
+          name: string
+        }
+        Insert: {
+          id?: number
+          name: string
+        }
+        Update: {
+          id?: number
+          name?: string
+        }
+        Relationships: []
+      }
       todos: {
         Row: {
           id: number
