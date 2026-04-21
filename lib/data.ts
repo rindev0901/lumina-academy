@@ -6,7 +6,7 @@ async function getUsers() {
   "use cache: private";
 
   const cookieStore = await cookies();
-  const supabase = await createClient(cookieStore);
+  const supabase = await createClient({ cookieStore });
 
   const user = await supabase.auth.getUser();
 
@@ -15,27 +15,15 @@ async function getUsers() {
 
   return user;
 }
-
-async function getTodos() {
-  "use cache: remote";
-  cacheLife("minutes");
-  cacheTag("todos");
-  const supabase = await createClient();
-
-  const { data: todos } = await supabase.from("todos").select();
-
-  return todos;
-}
-
 async function getStudents() {
   "use cache: remote";
   cacheLife("days");
   cacheTag("students");
-  const supabase = await createClient();
+  const supabase = await createClient({ isAdmin: true });
 
-  const { data: students } = await supabase.from("students").select();
+  const { data: students } = await supabase.from("profiles").select();
 
   return students;
 }
 
-export { getTodos, getUsers, getStudents };
+export { getUsers, getStudents };

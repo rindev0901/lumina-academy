@@ -5,7 +5,7 @@ const Students = async() => {
   return (
     <ul>
       {students?.map((stu) => (
-        <li key={stu.id}>{stu.name}</li>
+        <li key={stu.id}>{stu.full_name}</li>
       ))}
     </ul>
   );

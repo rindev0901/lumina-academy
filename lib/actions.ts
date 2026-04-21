@@ -8,7 +8,7 @@ import { cookies } from "next/headers";
 async function loginGoogle() {
   const cookieStore = await cookies();
 
-  const supabase = await createClient(cookieStore);
+  const supabase = await createClient({ cookieStore });
   try {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",

@@ -1,4 +1,3 @@
-import Todos from "./todos";
 import { Suspense } from "react";
 import User from "./user";
 import { Form } from "./form";
@@ -10,9 +9,6 @@ export default async function Page() {
     <div className="container mx-auto">
       <Link href={"/"}>Back to home</Link>
       <Form />
-      <Suspense fallback="Todos loading....">
-        <Todos />
-      </Suspense>
       <Suspense fallback="Students loading....">
         <Students />
       </Suspense>

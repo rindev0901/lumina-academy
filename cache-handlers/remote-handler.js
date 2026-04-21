@@ -25,6 +25,9 @@ module.exports = {
   async get(cacheKey, _softTags) {
     // Retrieve from Redis
     const stored = await client.get(cacheKey);
+
+    console.log(stored);
+
     if (!stored) return undefined;
 
     // Deserialize the entry
