@@ -17,8 +17,10 @@ async function getUsers() {
 }
 async function getStudents() {
   "use cache: remote";
+  
   cacheLife("days");
   cacheTag("students");
+
   const supabase = await createClient({ isAdmin: true });
 
   const { data: students } = await supabase.from("profiles").select();
