@@ -1,13 +1,14 @@
-import {
-  ApolloClient,
-  InMemoryCache,
-  defaultDataIdFromObject,
-  HttpLink,
-} from "@apollo/client";
+import { defaultDataIdFromObject, HttpLink } from "@apollo/client";
 import { SetContextLink } from "@apollo/client/link/context";
 
 import { relayStylePagination } from "@apollo/client/utilities";
 import { createClient } from "./supabase/server";
+
+import {
+  registerApolloClient,
+  ApolloClient,
+  InMemoryCache,
+} from "@apollo/client-integration-nextjs";
 
 const cache = new InMemoryCache({
   dataIdFromObject(responseObject) {
@@ -52,9 +53,9 @@ const authLink = new SetContextLink(async (prevContext, operation) => {
   };
 });
 
-const apolloClient = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache,
+export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
+  return new ApolloClient({
+    cache,
+    link: authLink,
+  });
 });
-
-export default apolloClient;
