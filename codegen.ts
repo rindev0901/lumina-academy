@@ -1,9 +1,21 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
 import { addTypenameSelectionDocumentTransform } from "@graphql-codegen/client-preset";
+import { config as dotenvConfig } from "dotenv";
+
+dotenvConfig({ path: [".env.local"] });
 
 const config: CodegenConfig = {
-  schema: "https://ntvruksvzexsboutkjoa.supabase.co/graphql/v1", // Using the local endpoint, update if needed
-  documents: "app/**/*.tsx",
+  schema: [
+    {
+      "https://ntvruksvzexsboutkjoa.supabase.co/graphql/v1": {
+        headers: {
+          apiKey: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+      },
+    },
+  ],
+  documents: ["app/**/*.{ts,tsx}"],
   overwrite: true,
   ignoreNoDocuments: true,
   generates: {

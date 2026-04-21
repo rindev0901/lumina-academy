@@ -9,6 +9,8 @@ import {
   ApolloClient,
   InMemoryCache,
 } from "@apollo/client-integration-nextjs";
+import { isServer } from "./helper";
+import { cookies } from "next/headers";
 
 const cache = new InMemoryCache({
   dataIdFromObject(responseObject) {
@@ -41,21 +43,10 @@ const httpLink = new HttpLink({
   uri: "https://ntvruksvzexsboutkjoa.supabase.co/graphql/v1",
 });
 
-const authLink = new SetContextLink(async (prevContext, operation) => {
-  const supabase = await createClient();
-
-  const token = (await supabase.auth.getSession()).data.session?.access_token;
-  return {
-    headers: {
-      ...prevContext.headers,
-      authorization: token ? `Bearer ${token}` : "",
-    },
-  };
-});
 
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
   return new ApolloClient({
     cache,
-    link: authLink,
+    link: httpLink,
   });
 });

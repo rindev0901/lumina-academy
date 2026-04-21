@@ -1,11 +1,11 @@
 import { getStudents } from "@/lib/data";
 
-const Students = async() => {
+const Students = async () => {
   const students = await getStudents();
   return (
     <ul>
-      {students?.map((stu) => (
-        <li key={stu.id}>{stu.full_name}</li>
+      {students?.map(({ node: { id, full_name } }) => (
+        <li key={id}>{full_name}</li>
       ))}
     </ul>
   );
