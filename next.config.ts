@@ -26,6 +26,18 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**", // This allows any path under the hostname
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/**", // This allows any path under the hostname
+      },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        port: "",
+        pathname: "/**", // This allows any path under the hostname
+      },
     ],
   },
   transpilePackages: ["motion"],

@@ -14,6 +14,72 @@ export type Database = {
   }
   public: {
     Tables: {
+      blog_categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      blog_category_map: {
+        Row: {
+          blog_id: string
+          category_id: string
+          created_at: string
+          id: string
+          is_main: boolean
+        }
+        Insert: {
+          blog_id: string
+          category_id: string
+          created_at?: string
+          id?: string
+          is_main?: boolean
+        }
+        Update: {
+          blog_id?: string
+          category_id?: string
+          created_at?: string
+          id?: string
+          is_main?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_category_map_blog_id_fkey"
+            columns: ["blog_id"]
+            isOneToOne: false
+            referencedRelation: "blogs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "blog_category_map_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "blog_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       blog_comments: {
         Row: {
           blog_id: string | null
@@ -54,49 +120,70 @@ export type Database = {
             referencedRelation: "blog_comments"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "blog_comments_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
         ]
       }
       blogs: {
         Row: {
-          author_id: string | null
-          content: string | null
+          author_id: string
+          content: string
           created_at: string | null
           id: string
+          is_featured: boolean
+          min_read: number
           published_at: string | null
-          slug: string | null
-          status: string | null
-          thumbnail_url: string | null
-          title: string | null
+          slug: string
+          status: string
+          thumbnail_url: string
+          title: string
           updated_at: string | null
-          view_count: number | null
+          view_count: number
         }
         Insert: {
-          author_id?: string | null
-          content?: string | null
+          author_id: string
+          content: string
           created_at?: string | null
           id?: string
+          is_featured?: boolean
+          min_read?: number
           published_at?: string | null
-          slug?: string | null
-          status?: string | null
-          thumbnail_url?: string | null
-          title?: string | null
+          slug: string
+          status?: string
+          thumbnail_url: string
+          title: string
           updated_at?: string | null
-          view_count?: number | null
+          view_count?: number
         }
         Update: {
-          author_id?: string | null
-          content?: string | null
+          author_id?: string
+          content?: string
           created_at?: string | null
           id?: string
+          is_featured?: boolean
+          min_read?: number
           published_at?: string | null
-          slug?: string | null
-          status?: string | null
-          thumbnail_url?: string | null
-          title?: string | null
+          slug?: string
+          status?: string
+          thumbnail_url?: string
+          title?: string
           updated_at?: string | null
-          view_count?: number | null
+          view_count?: number
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "blogs_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       cart: {
         Row: {
@@ -209,7 +296,15 @@ export type Database = {
           total_lessons?: number | null
           updated_at?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "courses_instructor_id_fkey"
+            columns: ["instructor_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       enrollments: {
         Row: {
@@ -247,6 +342,13 @@ export type Database = {
             referencedRelation: "courses"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "enrollments_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
         ]
       }
       lesson_progress: {
@@ -280,6 +382,13 @@ export type Database = {
             columns: ["lesson_id"]
             isOneToOne: false
             referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lesson_progress_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
@@ -369,7 +478,15 @@ export type Database = {
           type?: string | null
           user_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "notifications_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       order_items: {
         Row: {
@@ -441,7 +558,15 @@ export type Database = {
           total_amount?: number | null
           user_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "orders_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -519,7 +644,15 @@ export type Database = {
           website?: string | null
           youtube_url?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "user_profiles_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       wishlists: {
         Row: {

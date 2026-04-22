@@ -1,29 +1,42 @@
+import { QueryData } from "@supabase/supabase-js";
 import { cacheLife, cacheTag } from "next/cache";
 import { createClient } from "./supabase/server";
-import { cookies } from "next/headers";
 
-async function getUsers() {
-  "use cache: private";
-
-  const cookieStore = await cookies();
-  const supabase = await createClient({ cookieStore });
-
-  const user = await supabase.auth.getUser();
+async function getBlogs() {
+  "use cache: remote";
 
   cacheLife("max");
-  cacheTag(`user-${user.data.user?.id}`);
+  cacheTag("blogs");
 
-  return user;
-}
-async function getStudents() {
-  "use cache: remote";
-  cacheLife("days");
-  cacheTag("students");
   const supabase = await createClient({ isAdmin: true });
 
-  const { data: students } = await supabase.from("profiles").select();
-
-  return students;
+  return await supabase
+    .schema("public")
+    .from("blogs")
+    .select(
+      "*, author:profiles(avatar_url, full_name), tags:blog_category_map(...blog_categories(id, name, slug), is_main)",
+    )
+    .order("created_at", { ascending: false })
+    .order("updated_at", { ascending: false });
 }
 
-export { getUsers, getStudents };
+async function getBlogCategories() {
+  "use cache: remote";
+
+  cacheLife("max");
+  cacheTag("blog_categories");
+
+  const supabase = await createClient({ isAdmin: true });
+
+  return await supabase
+    .schema("public")
+    .from("blog_categories")
+    .select("id, name, slug, ...blog_category_map(count)");
+}
+
+type Blog = QueryData<ReturnType<typeof getBlogs>>[number];
+type BlogCategory = QueryData<ReturnType<typeof getBlogCategories>>[number];
+
+export { getBlogs, getBlogCategories };
+
+export type { Blog, BlogCategory };
