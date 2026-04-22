@@ -1,7 +1,7 @@
 import { cacheLife, cacheTag } from "next/cache";
 import { createClient } from "./supabase/server";
 import { cookies } from "next/headers";
-import { getClient, query } from "./apollo-client";
+import { getClient } from "./apollo-server";
 import { ProfilesQuery } from "@/app/supabase/queries";
 import { notFound } from "next/navigation";
 
@@ -18,23 +18,5 @@ async function getUsers() {
 
   return user;
 }
-async function getStudents() {
-  "use cache: remote";
 
-  cacheLife("days");
-  cacheTag("students");
-
-  await getClient().query({context: {
-    
-  }})
-
-  const { data } = await query({
-    query: ProfilesQuery,
-  });
-
-  if (!data) notFound();
-
-  return data.profilesCollection?.edges;
-}
-
-export { getUsers, getStudents };
+export { getUsers };

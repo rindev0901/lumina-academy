@@ -3,6 +3,7 @@ import { Manrope, Inter, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
+import { ApolloWrapper } from "./apollo-wrapper";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -37,7 +38,9 @@ export default function RootLayout({
       )}
     >
       <body className="bg-background text-on-surface font-body antialiased selection:bg-primary-fixed selection:text-on-primary-fixed-variant">
-        {children}
+        <ApolloWrapper>
+          {children}
+        </ApolloWrapper>
 
         <Toaster toastOptions={{}} theme="light" richColors />
       </body>
