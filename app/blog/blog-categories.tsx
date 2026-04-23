@@ -5,7 +5,7 @@ export default async function BlogCategories() {
   const { success, error, data: categories } = await getBlogCategories();
 
   if (!success && error) {
-    throw new Error(error.message, { cause: error.details });
+    throw new Error(error.message, { cause: error.hint || error.details });
   }
 
   return (
@@ -17,7 +17,7 @@ export default async function BlogCategories() {
               {cat.name}
             </span>
             <span className="bg-surface-container-low text-outline text-[10px] md:text-xs font-bold px-2 py-1 rounded-md group-hover:bg-primary-fixed group-hover:text-on-primary-fixed-variant transition-colors">
-              {cat.count[0]}
+              {cat.blogs[0].count}
             </span>
           </Link>
         </li>

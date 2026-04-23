@@ -48,12 +48,6 @@ export default function NavBar({
             >
               About
             </Link>
-            <Link
-              href="/supabase"
-              className="text-slate-600 hover:text-blue-600 transition-all duration-300"
-            >
-              Supabase
-            </Link>
           </div>
         </div>
         <div className="flex items-center gap-2 md:gap-4">
@@ -136,13 +130,6 @@ export default function NavBar({
             onClick={() => setIsMenuOpen(false)}
           >
             About
-          </Link>
-          <Link
-            href="/supabase"
-            className="text-slate-600 font-semibold py-2"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Supabase
           </Link>
           <div className="h-px bg-surface-container w-full my-2"></div>
           <Link

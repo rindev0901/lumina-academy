@@ -1,7 +1,7 @@
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
-import { Search, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -10,8 +10,14 @@ import { format } from "date-fns";
 import { DATE_FORMAT } from "@/app/constants";
 import ImageFallback from "@/components/image-fallback";
 import BlogCategories from "./blog-categories";
+import BlogPopular from "./blog-popular";
+import ErrorBoundary from "@/app/error-boundary";
+import BlogSearch from "./blog-search";
+import { Suspense } from "react";
 
-export default async function BlogListPage() {
+export default async function BlogListPage({
+  searchParams,
+}: PageProps<"/blog">) {
   const { success, data: blogs, error } = await getBlogs();
 
   if (!success && error) {
@@ -47,7 +53,7 @@ export default async function BlogListPage() {
           {/* Featured Article */}
           {featuredBlog && (
             <Link
-              href={`/blog/${featuredBlog.id}`}
+              href={`/blog/${featuredBlog.slug}`}
               className="group block mb-12 md:mb-20"
             >
               <div className="grid lg:grid-cols-2 gap-6 md:gap-8 items-center bg-surface-container-lowest rounded-3xl md:rounded-[2.5rem] p-3 md:p-4 ambient-shadow hover:shadow-xl transition-shadow duration-500">
@@ -71,13 +77,16 @@ export default async function BlogListPage() {
                   <p className="text-base md:text-lg text-on-surface-variant mb-4 md:mb-6 leading-relaxed">
                     {featuredBlog.content}
                   </p>
-                  <div className="space-x-2">
-                    {featuredBlog.tags.map((tag) => (
+                  <div className="flex flex-wrap gap-2">
+                    <Badge className="bg-primary-fixed text-on-primary-fixed-variant hover:bg-primary-fixed text-[10px] md:text-xs font-bold tracking-widest rounded-full mb-4 md:mb-6">
+                      {featuredBlog.category?.name ?? "UNCATEGORIZED"}
+                    </Badge>
+                    {featuredBlog.tags.slice(0, 3).map((tag) => (
                       <Badge
-                        key={tag.id}
-                        className="bg-primary-fixed text-on-primary-fixed-variant hover:bg-primary-fixed text-[10px] md:text-xs font-bold tracking-widest rounded-full mb-4 md:mb-6"
+                        key={tag}
+                        className="bg-surface-container-low text-on-surface-variant hover:bg-surface-container-low text-[10px] md:text-xs font-bold tracking-widest rounded-full mb-4 md:mb-6"
                       >
-                        {tag.name}
+                        {tag}
                       </Badge>
                     ))}
                   </div>
@@ -112,8 +121,27 @@ export default async function BlogListPage() {
               </div>
             </Link>
           )}
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 md:gap-16">
+          {/* Search */}
+          <div className="mb-8">
+            <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-outline mb-3 md:mb-4">
+              SEARCH
+            </h3>
+            <Suspense
+              fallback={
+                <div className="relative">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-outline w-4 h-4 md:w-5 md:h-5" />
+                  <Input
+                    type="text"
+                    placeholder="Search articles..."
+                    className="w-full bg-surface-container-lowest border-surface-container rounded-xl pl-10 md:pl-12 pr-4 py-6 text-sm md:text-base focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:border-primary transition-all"
+                  />
+                </div>
+              }
+            >
+              <BlogSearch searchParams={searchParams} />
+            </Suspense>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-16">
             {/* Recent Insights (Left) */}
             <div className="lg:col-span-2">
               <div className="flex items-center justify-between mb-6 md:mb-10 border-b border-surface-container pb-4">
@@ -131,7 +159,7 @@ export default async function BlogListPage() {
               <div className="space-y-8 md:space-y-12">
                 {recentBlogs.map((post, i) => (
                   <Link
-                    href="/blog/1"
+                    href={`/blog/${post.slug}`}
                     key={i}
                     className="group flex flex-col sm:flex-row gap-4 md:gap-8 items-start sm:items-center"
                   >
@@ -148,7 +176,7 @@ export default async function BlogListPage() {
                     <div>
                       <div className="flex items-center gap-2 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2 md:mb-3">
                         <span className="text-primary">
-                          {post.tags.find((tag) => tag.is_main)?.name}
+                          {post.category?.name ?? "INSIGHTS"}
                         </span>
                         <span className="text-outline-variant">•</span>
                         <span className="text-outline">
@@ -212,27 +240,14 @@ export default async function BlogListPage() {
 
             {/* Sidebar (Right) */}
             <div className="space-y-10 md:space-y-12">
-              {/* Search */}
-              <div>
-                <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-outline mb-3 md:mb-4">
-                  SEARCH
-                </h3>
-                <div className="relative">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-outline w-4 h-4 md:w-5 md:h-5" />
-                  <Input
-                    type="text"
-                    placeholder="Search articles..."
-                    className="w-full bg-surface-container-lowest border-surface-container rounded-xl pl-10 md:pl-12 pr-4 py-6 text-sm md:text-base focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:border-primary transition-all"
-                  />
-                </div>
-              </div>
-
               {/* Categories */}
               <div>
                 <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-outline mb-3 md:mb-4">
                   CATEGORIES
                 </h3>
-                <BlogCategories />
+                <ErrorBoundary title="Blog categories fetch failed">
+                  <BlogCategories />
+                </ErrorBoundary>
               </div>
 
               {/* Popular Reads */}
@@ -240,45 +255,9 @@ export default async function BlogListPage() {
                 <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-outline mb-3 md:mb-4">
                   POPULAR READS
                 </h3>
-                <div className="space-y-4 md:space-y-6">
-                  {[
-                    {
-                      title: "10 Habits of Highly Successful Self-Learners",
-                      views: "2.4k",
-                      img: "habits",
-                    },
-                    {
-                      title: "Mastering React in 30 Days: A Roadmap",
-                      views: "1.8k",
-                      img: "react-roadmap",
-                    },
-                  ].map((post, i) => (
-                    <Link
-                      href="/blog/1"
-                      key={i}
-                      className="flex gap-3 md:gap-4 group"
-                    >
-                      <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-lg overflow-hidden shrink-0">
-                        <ImageFallback
-                          src={`https://picsum.photos/seed/${post.img}/100/100`}
-                          alt={post.title}
-                          fill
-                          sizes="64px"
-                          className="object-cover group-hover:scale-110 transition-transform duration-500"
-                          referrerPolicy="no-referrer"
-                        />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-xs md:text-sm leading-tight mb-1 group-hover:text-primary transition-colors">
-                          {post.title}
-                        </h4>
-                        <p className="text-[10px] md:text-xs text-outline">
-                          {post.views} Views
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+                <ErrorBoundary title="Blog popular fetch failed">
+                  <BlogPopular />
+                </ErrorBoundary>
               </div>
 
               {/* Newsletter */}

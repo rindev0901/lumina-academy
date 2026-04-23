@@ -41,45 +41,6 @@ export type Database = {
         }
         Relationships: []
       }
-      blog_category_map: {
-        Row: {
-          blog_id: string
-          category_id: string
-          created_at: string
-          id: string
-          is_main: boolean
-        }
-        Insert: {
-          blog_id: string
-          category_id: string
-          created_at?: string
-          id?: string
-          is_main?: boolean
-        }
-        Update: {
-          blog_id?: string
-          category_id?: string
-          created_at?: string
-          id?: string
-          is_main?: boolean
-        }
-        Relationships: [
-          {
-            foreignKeyName: "blog_category_map_blog_id_fkey"
-            columns: ["blog_id"]
-            isOneToOne: false
-            referencedRelation: "blogs"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "blog_category_map_category_id_fkey"
-            columns: ["category_id"]
-            isOneToOne: false
-            referencedRelation: "blog_categories"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       blog_comments: {
         Row: {
           blog_id: string | null
@@ -132,6 +93,7 @@ export type Database = {
       blogs: {
         Row: {
           author_id: string
+          category_id: string
           content: string
           created_at: string | null
           id: string
@@ -140,6 +102,7 @@ export type Database = {
           published_at: string | null
           slug: string
           status: string
+          tags: string[]
           thumbnail_url: string
           title: string
           updated_at: string | null
@@ -147,6 +110,7 @@ export type Database = {
         }
         Insert: {
           author_id: string
+          category_id: string
           content: string
           created_at?: string | null
           id?: string
@@ -155,6 +119,7 @@ export type Database = {
           published_at?: string | null
           slug: string
           status?: string
+          tags?: string[]
           thumbnail_url: string
           title: string
           updated_at?: string | null
@@ -162,6 +127,7 @@ export type Database = {
         }
         Update: {
           author_id?: string
+          category_id?: string
           content?: string
           created_at?: string | null
           id?: string
@@ -170,6 +136,7 @@ export type Database = {
           published_at?: string | null
           slug?: string
           status?: string
+          tags?: string[]
           thumbnail_url?: string
           title?: string
           updated_at?: string | null
@@ -181,6 +148,13 @@ export type Database = {
             columns: ["author_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "blogs_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "blog_categories"
             referencedColumns: ["id"]
           },
         ]
